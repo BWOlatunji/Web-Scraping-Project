@@ -60,9 +60,7 @@ us_states_url <- "https://www.geonames.org/postal-codes/postal-codes-us.html"
 4. Combine the two `tibble` above
 
 ```{r}
-# using this link as an example: "https://www.geonames.org/postal-codes/US/AK/alaska.html",
-  # let's generate the complete url for the web page that has the list of the postal codes for each state
-  # We achieve this by joining the main web address to the extended url for the state
+
   states_postalcode_url_tbl <- all_state_names_tbl |>
     left_join(state_urls_tbl, by = join_by(state_id)) 
 
@@ -71,6 +69,11 @@ us_states_url <- "https://www.geonames.org/postal-codes/postal-codes-us.html"
 5. Manipulate the resulting `tibble` above, `states_postalcode_url_tbl` by adding a new column, `complete_state_postalcodes_url`, the combined url of the main website and the extended urls for each state
 
 ```{r}
+# using this link as an example: "https://www.geonames.org/postal-codes/US/AK/alaska.html",
+# let's generate the complete url for the web page that has the list of the postal codes 
+# for each state
+# We achieve this by joining the main web address https://www.geonames.org to the extended url {state_ext_url} for the state
+
 states_postalcode_url_tbl <- states_postalcode_url_tbl |>
   mutate(complete_state_postalcodes_url = str_glue("https://www.geonames.org{state_ext_url}"))
 ```
