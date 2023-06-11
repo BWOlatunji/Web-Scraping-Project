@@ -5,7 +5,7 @@ library(furrr)     # Parallel Processing using purrr (iteration)
 library(xopen)     # Quickly opening URLs
 
 
-states_postalcodes_tbl <- read_rds("data/states_postalcodes_tbl.rds")
+states_postalcodes_tbl <- read_rds("data/states_postalcodes_data_tbl.rds")
 
 # CREATE FUCNTION TO GET ALL PROFILE INFORMATION ON THE SEARCH RESULT LIST
 get_all_profile_info <- function(st_pc_url) {
