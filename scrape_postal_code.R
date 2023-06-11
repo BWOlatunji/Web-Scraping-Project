@@ -2,7 +2,6 @@
 library(tidyverse) # Main Package - Loads dplyr, purrr
 library(rvest)     # HTML Web Scraping
 library(furrr)     # Parallel Processing using purrr (iteration)
-library(fs)        # Working with File System
 library(xopen)     # Quickly opening URLs
 
 # url containing list of all states in USA

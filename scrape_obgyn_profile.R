@@ -1,4 +1,8 @@
 # ACOG Data
+library(tidyverse) # Main Package - Loads dplyr, purrr
+library(rvest)     # HTML Web Scraping
+library(furrr)     # Parallel Processing using purrr (iteration)
+library(xopen)     # Quickly opening URLs
 
 # CREATE FUCNTION TO GET ALL PROFILE INFORMATION ON THE SEARCH RESULT LIST
 get_all_profile_info <- function(st_pc_url) {
