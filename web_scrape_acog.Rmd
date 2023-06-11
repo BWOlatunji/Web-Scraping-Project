@@ -19,9 +19,22 @@ To accomplish this task, I would employ the following approach:
 
 I will utilize the powerful capabilities of R packages such as rvest, and httr to scrape the target web page and extract the relevant information you specified. By inspecting the page structure and leveraging CSS selectors or XPath expressions, I will accurately identify and extract the required data fields.
 
+### Preliminary:
+```{r}
+
+library(tidyverse) # Main Package - Loads dplyr, purrr
+library(rvest)     # HTML Web Scraping
+library(furrr)     # Parallel Processing using purrr (iteration)
+library(fs)        # Working with File System
+library(xopen)     # Quickly opening URLs
+
+```
+
+
 ### Source US Postal codes:
 All postal codes within each states were scraped from [GeoNames Website](https://www.geonames.org/) for states in the United States from this link: <https://www.geonames.org/postal-codes/postal-codes-us.html>
 The following are steps used for scraping the postal codes
+
 
 1. Save the web page address for the states in the United States as a variable, `us_states_url` as shown below
 
@@ -42,6 +55,8 @@ us_states_url <- "https://www.geonames.org/postal-codes/postal-codes-us.html"
     html_text2() |>
     enframe(name = "state_id", value = "state_name")
 
+head(all_state_names_tbl,n = 10)
+
 ```
 
 
@@ -49,12 +64,14 @@ us_states_url <- "https://www.geonames.org/postal-codes/postal-codes-us.html"
 
 ```{r}
 # get the extended url for each state that list all the postal codes for the state
-  state_urls_tbl <- all_states_url |>
+  state_urls_tbl <- us_states_url |>
     read_html() |>
     html_element("div") |>
     html_elements("a") |>
     html_attr("href") |>
     enframe(name = "state_id", value = "state_ext_url")
+
+head(state_urls_tbl,n=10)
 ```
 
 4. Combine the two `tibble` above
@@ -63,6 +80,8 @@ us_states_url <- "https://www.geonames.org/postal-codes/postal-codes-us.html"
 
   states_postalcode_url_tbl <- all_state_names_tbl |>
     left_join(state_urls_tbl, by = join_by(state_id)) 
+
+head(states_postalcode_url_tbl, n=10)
 
 ```
 
@@ -76,6 +95,8 @@ us_states_url <- "https://www.geonames.org/postal-codes/postal-codes-us.html"
 
 states_postalcode_url_tbl <- states_postalcode_url_tbl |>
   mutate(complete_state_postalcodes_url = str_glue("https://www.geonames.org{state_ext_url}"))
+
+head(states_postalcode_url_tbl, n = 10)
 ```
 
 6. Explore the final `tibble`, `states_postalcode_url_tbl`
@@ -84,11 +105,11 @@ states_postalcode_url_tbl <- states_postalcode_url_tbl |>
 glimpse(states_postalcode_url_tbl)
 ```
 
-7. Explore the `complete_state_postalcodes_url`
+7. Explore the first 10 rows of the column, `complete_state_postalcodes_url`
 
 ```{r}
 
-states_postalcode_url_tbl$complete_state_postalcodes_url
+states_postalcode_url_tbl$complete_state_postalcodes_url[1:10]
 
 ```
 
