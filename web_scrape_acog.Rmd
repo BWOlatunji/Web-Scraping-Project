@@ -1,0 +1,36 @@
+---
+title: "Web Scrape Data from ACOG Website"
+author: "Bilikisu Olatunji"
+date: "2023-06-11"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Project Description
+
+The project deliverable include the code that will allow project owner to scrape this web page: https://www.acog.org/womens-health/find-an-ob-gyn. The code should be in R and is deliverable after the project. The finished product should include the full_name, address, city, state, country, phone number, and specialty area. All results should be limited to United States physicians only.
+
+To accomplish this task, I would employ the following approach:
+
+## Data Retrieval: 
+
+I will utilize the powerful capabilities of R packages such as rvest, and httr to scrape the target web page and extract the relevant information you specified. By inspecting the page structure and leveraging CSS selectors or XPath expressions, I will accurately identify and extract the required data fields.
+
+From the website, using a *sample postal code, 99503*, [Search link](https://www.acog.org/womens-health/find-an-ob-gyn/results?firstname=&lastname=&address=99503&searchradius=10)
+
+```{r cars}
+summary(cars)
+```
+
+## Including Plots
+
+You can also embed plots, for example:
+
+```{r pressure, echo=FALSE}
+plot(pressure)
+```
+
+Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
