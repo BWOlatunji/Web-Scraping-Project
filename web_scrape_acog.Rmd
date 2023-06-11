@@ -146,6 +146,16 @@ get_states_url <- function(all_states_url) {
 }
 ```
 
+9. Test the function
+
+```{r}
+
+# tibble containing web page links for each states where we can scrape all their postal codes
+states_postalcode_url_tbl <- get_states_url(us_states_url)
+
+head(states_postalcode_url_tbl)
+
+```
 
 
 
