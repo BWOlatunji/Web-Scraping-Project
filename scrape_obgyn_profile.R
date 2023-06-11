@@ -4,7 +4,7 @@ library(rvest)     # HTML Web Scraping
 library(furrr)     # Parallel Processing using purrr (iteration)
 library(xopen)     # Quickly opening URLs
 
-
+# data
 states_postalcodes_tbl <- read_rds("data/states_postalcodes_data_tbl.rds")
 
 # CREATE FUCNTION TO GET ALL PROFILE INFORMATION ON THE SEARCH RESULT LIST

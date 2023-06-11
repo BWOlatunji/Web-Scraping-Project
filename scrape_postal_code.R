@@ -65,5 +65,7 @@ states_postalcodes_tbl <- states_postalcodes_tbl |>
 # CREATE DIRECTORY AND SAVE WEB SCRAPPED RESULTS CONTAINING STATES AND THEIR POSTAL CODES
 write_rds(states_postalcodes_tbl, "data/states_postalcodes_tbl.rds")
 
+write_csv(states_postalcodes_tbl, "data/states_postalcodes_tbl.csv")
+
 
 
